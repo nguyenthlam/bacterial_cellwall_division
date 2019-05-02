@@ -1,0 +1,277 @@
+! This is the parameters file.
+
+number of threads used in openmp:
+NTHREADS
+4
+
+common parameters:
+
+PI
+3.141592653589793239
+
+DELTA
+0.000001
+
+BETA
+0.00000000000001
+
+
+-------------------------------------------------------------
+
+Mechanical stiffness of glycan strands and peptides:
+
+! We define the energy Unit E0 = 1E-20 Joules.
+! Here we define a Length_Unit L0 = 1 nm.
+! JC all-atom MD parameter for glycan: Kg=383 E0/L0^2, bond_length= 2.03 L0
+! Here we use a Worm-like chain model for peptide: F = -(K_b*T/P)*(1/(4(1-x/L_c)**2)-1/4+x/L_c)
+! where P is the persistence length ~ 0.313 nm. L_c is the contour length ~ 3.55 nm.
+! Then the stiffness is define: K = K_b*T/P/L_c = 0.372 E0
+! To model each disaccharide as one bead, spring constant is doubled and relaxed length is reduced in half.
+
+Spring constant and length for glycan strand
+GLYSPRING
+557.0
+
+GLYLENGTH
+2.005
+
+Glycan bending stiffness and angle
+GLYBEND
+8.36
+
+GLYTHETA
+180.0
+
+Force constant and relaxed length for peptide
+PEPFORCE
+1.49
+
+PEPLENGTH
+3.8
+
+
+Turgor Pressure = 3 atm = 3E5 J/m**3 = 3E-22 J/nm**3 = 0.03 E0/L0**3 
+PRESSURE
+0.03000    
+
+! Here temperature is to calculate for K_B * T which is the thermal energy.
+! If T = 300 K, then K_B * T = 0.414 E0
+TEMPERATURE
+300.0
+
+
+----------------------------------------------------------
+Force constants for enzymes:
+
+surface constraint
+KSUR
+50.0
+
+GTase holds the strand tip
+KGTASE
+2.0
+
+TPase holds peptides
+KTPASE
+5.0
+
+LTPASE
+3.0
+
+Reaction distance of TPase
+DREACT
+3.0
+
+EDase holds peptide
+KEDASE
+20.0
+
+LEDASE
+1.0
+
+Reaction distance of EDase
+L_EDCAP
+3.0
+
+GTase-TPase connection
+KGTTP
+10.0
+
+LGTTP_ONE
+3
+
+LGTTP_TWO
+0.5
+
+GTase-EDase connection
+KGTED
+1.0
+
+LGTED
+3.0
+
+Tpase-Edase interaction
+
+KTPED
+1.0
+
+LTPED
+1.0
+
+Constraint TPase on the side of GTase
+KSIDE
+10.0
+
+LSIDE
+0.5
+
+Steric hindrance on GTase from neighbor bonds
+KWALL
+20.0
+
+constraint on leading direction
+KLEAD
+10.0
+
+Pairing two GTases
+KPAIR
+5.0
+
+LPAIR
+1.5
+
+inverse mass of PBPs
+INVMPBP
+0.25
+
+----------------------------------------
+
+Forces on cell wall
+
+Cell wall thickness
+WTHICK
+0
+
+Periplasm thickness
+PTHICK
+3.0
+
+Constrain cell axis
+KAXIS
+0.1
+
+width of the nidcell
+SIGMA
+20
+
+Constriction pressure constant and increment ratio
+PCONSTRICT
+0.15
+
+DPCONS
+0.0
+
+constriction range in nm
+LCONS
+100
+
+to limit SYNCOMP within a range at midcell
+LAMBDA
+40
+
+whether old-bonds has effect on new strands
+JOLDBOND
+0
+
+Removal probability of old bond Prmbond and OLDTYPMAX
+PRMBOND
+1.0
+
+OLDTYPMAX
+100
+
+max number of PG allowed below old bond
+PGBELOW
+4
+----------------------------------------
+
+number of complex and how much growth is
+SYNCOMP
+4
+
+GROWTH
+0.05
+
+number of steps to run for each output
+NPRINT
+10000
+
+----------------------------------------
+
+Enzyme rates
+
+activation of GTase
+P_ACTI
+0.01
+
+deactivation of GTase
+P_DEACT
+0.0001
+
+termination of GTase
+PTERM
+0.000002
+
+loading/unloading precursors
+P_GLYIN
+0.001
+
+P_GLYOUT
+0.0001
+
+translocation of GTase
+P_TRANSFAST
+0.000333333333333
+
+P_TRANSSLOW
+0.0000005
+
+TPase releases peptide
+P_PEPOUT
+0.0001
+
+Edase release peptides
+P_EDHOLD
+0.000002
+
+number of steps that EDase holds peptide before release
+N_EDHOLD
+500000
+
+spotaineous cleaving
+PCLEAVE_SPON
+0.005
+
+spontaineous capture of peptides 
+PEDCAP_SPON
+0
+
+capture of peptides while inactive
+PEDCAP_INACT
+0.0000025
+
+trimming strands by lytic-transglycosylase
+PLYT
+0.1
+
+number of steps allowed for trapping complexes
+NTRAP
+10000000
+
+limit on the length of glycan strands
+LENMAX
+40
+
+set average length of new PG
+AVELEN
+14
